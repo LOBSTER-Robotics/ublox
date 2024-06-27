@@ -9,7 +9,7 @@ use bitflags::bitflags;
 use chrono::prelude::*;
 use num_traits::cast::{FromPrimitive, ToPrimitive};
 use num_traits::float::FloatCore;
-
+use serde::Serialize;
 use ublox_derive::{
     define_recv_packets, ubx_extend, ubx_extend_bitflags, ubx_packet_recv, ubx_packet_recv_send,
     ubx_packet_send,
@@ -569,6 +569,7 @@ pub enum CarrierPhaseRangeSolutionStatus {
 
 #[repr(transparent)]
 #[derive(Copy, Clone)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize))]
 pub struct NavRelPosNedFlags(u32);
 
 impl NavRelPosNedFlags {
